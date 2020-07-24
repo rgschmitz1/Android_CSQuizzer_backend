@@ -23,7 +23,7 @@ app.use('/register', require('./routes/register.js'));
  */
 app.get("/", (req, res) => {
     let fs = require('fs');
-    fs.readFile('test.html', (err, data) => {
+    fs.readFile('index.html', (err, data) => {
         res.writeHead(200, {'Content-Type': 'text/html'});
         res.write(data);
         return res.end(); //end the response
