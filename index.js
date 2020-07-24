@@ -22,12 +22,12 @@ app.use('/register', require('./routes/register.js'));
  * Look up the node module 'fs' ex: require('fs');
  */
 app.get("/", (req, res) => {
-    res.writeHead(200, {'Content-Type': 'text/html'});
-    for (let i = 1; i < 7; i++) {
-        //write a response to the client
-        res.write('<h' + i + ' style="color:blue">Hello World!</h' + i + '>'); 
-    }
-    res.end(); //end the response
+    let fs = require('fs');
+    fs.readFile('test.html', (err, data) => {
+        res.writeHead(200, {'Content-Type': 'text/html'});
+        res.write(data);
+        return res.end(); //end the response
+    });
 });
 
 /* 
