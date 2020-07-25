@@ -4,17 +4,19 @@ let db = require('./sqlconn.js');
 // We use this to create the SHA256 hash
 const crypto = require('crypto');
 
+// We are using sendgrid for email
 const sgMail = require('@sendgrid/mail');
+// We need to set the sender to a constant to use sendgrid
+const sender = 'phucbob.csquizzer@gmail.com';
 
 function sendEmail(from, receiver, subj, message) {
     sgMail.setApiKey(process.env.SENDGRID_API_KEY);
     const msg = {
-        from: from, // Use the email address or domain you verified above
+        from: sender,
         to: receiver,
         subject: subj,
         html: message
     };
-    var result=true;
     sgMail
         .send(msg)
         .then(() => {
