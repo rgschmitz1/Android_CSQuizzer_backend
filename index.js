@@ -32,7 +32,7 @@ app.get("/", (req, res) => {
 
 /* 
 * Heroku will assign a port you can use via the 'PORT' environment variable
-* To accesss an environment variable, use process.env.<ENV>
+* To access an environment variable, use process.env.<ENV>
 * If there isn't an environment variable, process.env.PORT will be null (or undefined)
 * If a value is 'falsy', i.e. null or undefined, javascript will evaluate the rest of the 'or'
 * In this case, we assign the port to be 5000 if the PORT variable isn't set

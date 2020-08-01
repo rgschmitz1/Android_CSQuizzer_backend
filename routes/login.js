@@ -1,4 +1,4 @@
-63.	//express is the framework we're going to use to handle requests
+//express is the framework we're going to use to handle requests
 const express = require('express');
 
 //Create connection to Heroku Database
@@ -6,7 +6,7 @@ let db = require('../utilities/utils').db;
 
 let getHash = require('../utilities/utils').getHash;
 
-var router = express.Router();
+let router = express.Router();
 
 const bodyParser = require("body-parser");
 //This allows parsing of the body of POST requests, that are encoded in JSON
@@ -21,7 +21,6 @@ let config = {
 router.post('/', (req, res) => {
     let username = req.body['username'];
     let theirPw = req.body['password'];
-    let wasSuccessful = false;
     if(username && theirPw) {
         //Using the 'one' method means that only one row should be returned
         db.one('SELECT Password, Salt FROM Members WHERE Username=$1', [username])

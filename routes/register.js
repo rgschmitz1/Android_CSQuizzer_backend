@@ -12,7 +12,7 @@ let getHash = require('../utilities/utils').getHash;
 let sendEmail = require('../utilities/utils').sendEmail;
 const sender = 'phucbob.csquizzer@gmail.com';
 
-var router = express.Router();
+let router = express.Router();
 
 const bodyParser = require('body-parser');
 // This allows parsing of the body of the POST requests, that are encoded in JSON
@@ -22,11 +22,11 @@ router.post('/', (req, res) => {
     res.type('application/json');
 
     // Retrieve data from query params
-    var first = req.body['first'];
-    var last = req.body['last'];
-    var username = req.body['username'];
-    var email = req.body['email'];
-    var password = req.body['password'];
+    let first = req.body['first'];
+    let last = req.body['last'];
+    let username = req.body['username'];
+    let email = req.body['email'];
+    let password = req.body['password'];
     // Verify that the caller supplied all the parameters
     // In js, empty strings or null values evaluate to false
     if(first && last && username && email && password) {
