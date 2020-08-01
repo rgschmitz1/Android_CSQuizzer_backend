@@ -51,7 +51,8 @@ router.post('/', (req, res) => {
                 } else {
                     //credentials did not match
                     res.send({
-                        success: false
+                        success: false,
+                        error: "username and/or password was not found"
                     });
                 }
             })
@@ -60,13 +61,14 @@ router.post('/', (req, res) => {
                 //If anything happened, it wasn't successful
                 res.send({
                     success: false,
+                    error: "username and/or password was not found",
                     message: err
                 });
             });
     } else {
         res.send({
             success: false,
-            message: 'missing credentials'
+            error: 'missing credentials'
         });
     }
 });
