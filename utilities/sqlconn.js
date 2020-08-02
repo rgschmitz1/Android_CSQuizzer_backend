@@ -2,6 +2,14 @@
 const pgp = require('pg-promise')();
 //We have to set ssl usage to true for Heroku to accept our connection
 pgp.pg.defaults.ssl = true;
+// const { Client } = require('pg');
+//
+// const db = new Client({
+//     connectionString: process.env.DATABASE_URL,
+//     ssl: {
+//         rejectUnauthorized: false
+//     }
+// });
 
 //Create connection to Heroku Database
 let db = pgp(process.env.DATABASE_URL);
