@@ -14,6 +14,7 @@ const app = express();
  */
 app.use('/login', require('./routes/login.js'));
 app.use('/register', require('./routes/register.js'));
+app.use('/get-questions', require('./routes/getquestions.js'));
 
 /*
  * Return HTML for the / end point.
@@ -40,7 +41,7 @@ app.get("/", (req, res) => {
 * let port; = process.env.PORT;
 * if(port == null) {port = 5000} 
 */
-// process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 app.listen(process.env.PORT || 5000, () => {
     console.log("Server up and running on port: " + (process.env.PORT || 5000));
 });
