@@ -5,6 +5,6 @@ CREATE TABLE Questions (
 	QuestionBody TEXT NOT NULL,
     CourseID integer REFERENCES Courses,
 	TopicID integer REFERENCES Topics,
-	DifficultiesID integer REFERENCES Difficulties,
+	DifficultyID integer REFERENCES Difficulties,
 	TypeID integer REFERENCES Types
 );

@@ -1,10 +1,10 @@
 DROP TABLE IF EXISTS Difficulties;
 
 CREATE TABLE Difficulties (
-	DifficultiesID SERIAL PRIMARY KEY,
-	DifficultiesDescription VARCHAR(10) UNIQUE NOT NULL
+	DifficultyID SERIAL PRIMARY KEY,
+	DifficultyDescription VARCHAR(10) UNIQUE NOT NULL
 );
 
-INSERT INTO Difficulties (DifficultiesDescription) VALUES ('Easy');
-INSERT INTO Difficulties (DifficultiesDescription) VALUES ('Medium');
-INSERT INTO Difficulties (DifficultiesDescription) VALUES ('Hard');
+INSERT INTO Difficulties (DifficultyDescription) VALUES ('Easy');
+INSERT INTO Difficulties (DifficultyDescription) VALUES ('Medium');
+INSERT INTO Difficulties (DifficultyDescription) VALUES ('Hard');
