@@ -11,7 +11,7 @@ const bodyParser = require("body-parser");
 router.use(bodyParser.json());
 
 router.get("/", (req, res) => {
-    let query = 'SELECT QuestionTitle, QuestionBody, CourseName, ' +
+    let query = 'SELECT QuestionID, QuestionTitle, QuestionBody, CourseName, ' +
         'TopicDescription, DifficultyDescription, TypeDescription ' +
         'FROM Questions a, Courses b, Topics c, Difficulties d, Types e ' +
         'WHERE a.CourseID = b.CourseID ' +
