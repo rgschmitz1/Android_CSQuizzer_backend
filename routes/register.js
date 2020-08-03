@@ -48,8 +48,8 @@ router.post('/', (req, res) => {
                 sendEmail(sender, email, 'Welcome!',
                     "<strong>Welcome to our app!</strong>");
             }).catch((err) => {
-            //log teh error
-            console.log(err);
+            //log the error
+            //console.log(err);
             // If we get an error, it most likely means the account already exists
             // Therefore, let the requester known they tried to create an account that already exists
             res.send({

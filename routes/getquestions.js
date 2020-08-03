@@ -18,6 +18,18 @@ router.get("/", (req, res) => {
         'AND a.TopicID = c.TopicID ' +
         'AND a.DifficultyID = d.DifficultyID ' +
         'AND a.TypeID = e.TypeID';
+    if (req.query['course'] != null)
+        query += ' AND a.CourseID ' +
+            'IN (SELECT CourseID FROM Courses WHERE CourseName = \'' +
+            req.query['course'] + '\')';
+    if (req.query['topic'] != null)
+        query += ' AND a.TopicID ' +
+            'IN (SELECT TopicID FROM Topics WHERE TopicDescription = \'' +
+            req.query['topic'] + '\')';
+    if (req.query['difficulty'] != null)
+        query += ' AND a.DifficultyID ' +
+            'IN (SELECT DifficultyID FROM Difficulties WHERE DifficultyDescription = \'' +
+            req.query['difficulty'] + '\')';
     db.manyOrNone(query)
         //If successful, run function passed into .then()
         .then((data) => {
@@ -26,7 +38,7 @@ router.get("/", (req, res) => {
                 names: data
             });
         }).catch((error) => {
-        console.log(error);
+        //console.log(error);
         res.send({
             success:false,
             error:error
