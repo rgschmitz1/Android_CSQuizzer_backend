@@ -9,7 +9,7 @@ const sgMail = require('@sendgrid/mail');
 // We need to set the sender to a constant to use sendgrid
 const sender = 'phucbob.csquizzer@gmail.com';
 
-function sendEmail(from, receiver, subj, message) {
+function sendEmail(receiver, subj, message) {
     sgMail.setApiKey(process.env.SENDGRID_API_KEY);
     const msg = {
         from: sender,
@@ -39,6 +39,15 @@ function getHash(pw, salt) {
     return crypto.createHash('sha256').update(pw+salt).digest('hex');
 }
 
+function generateRandomPassword(length) {
+    let result = '';
+    let characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    for ( var i = 0; i < length; i++ ) {
+        result += characters.charAt(Math.floor(Math.random() * characters.length));
+    }
+    return result;
+}
+
 module.exports = {
-    db, getHash, sendEmail
+    db, getHash, sendEmail, generateRandomPassword
 };
