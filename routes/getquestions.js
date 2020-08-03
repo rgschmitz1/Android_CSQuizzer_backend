@@ -11,67 +11,39 @@ const bodyParser = require("body-parser");
 router.use(bodyParser.json());
 
 router.get("/", (req, res) => {
-    let query = 'SELECT QuestionID, QuestionTitle, QuestionBody, CourseName, ' +
+    let dbquery = 'SELECT QuestionID, QuestionTitle, QuestionBody, CourseName, ' +
         'TopicDescription, DifficultyDescription, TypeDescription ' +
         'FROM Questions a, Courses b, Topics c, Difficulties d, Types e ' +
         'WHERE a.CourseID = b.CourseID ' +
         'AND a.TopicID = c.TopicID ' +
         'AND a.DifficultyID = d.DifficultyID ' +
         'AND a.TypeID = e.TypeID';
-    if (req.query['course'] != null)
-        query += ' AND a.CourseID ' +
+    if (req.query['course'])
+        dbquery += ' AND a.CourseID ' +
             'IN (SELECT CourseID FROM Courses WHERE CourseName = \'' +
             req.query['course'] + '\')';
-    if (req.query['topic'] != null)
-        query += ' AND a.TopicID ' +
+    if (req.query['topic'])
+        dbquery += ' AND a.TopicID ' +
             'IN (SELECT TopicID FROM Topics WHERE TopicDescription = \'' +
             req.query['topic'] + '\')';
-    if (req.query['difficulty'] != null)
-        query += ' AND a.DifficultyID ' +
+    if (req.query['difficulty'])
+        dbquery += ' AND a.DifficultyID ' +
             'IN (SELECT DifficultyID FROM Difficulties WHERE DifficultyDescription = \'' +
             req.query['difficulty'] + '\')';
-    db.manyOrNone(query)
+    db.manyOrNone(dbquery)
         //If successful, run function passed into .then()
         .then((data) => {
             res.send({
                 success: true,
-                names: data
+                questions: data
             });
         }).catch((error) => {
         //console.log(error);
         res.send({
-            success:false,
-            error:error
+            success: false,
+            error: error
         })
     });
 });
-
-// router.post("/", (req, res) => {
-//     res.type("application/json");
-//     //Retrieve data from query params
-//     var textQuestion = req.body['textQuestion'];
-//     if(textQuestion) {
-//         db.manyOrNone("SELECT * FROM Questions WHERE TextQuestion LIKE" + " '%" + textQuestion +"%'")
-//             //If successful, run function passed into .then()
-//             .then((data) => {
-//                 res.send({
-//                     success: true,
-//                     names: data
-//                 });
-//             }).catch((error) => {
-//             console.log(error);
-//             res.send({
-//                 success:false,
-//                 error:error
-//             })
-//         });
-//     }else {
-//         res.send({
-//             success: false,
-//             input: req.body,
-//             error: "Missing required user information"
-//         });
-//     }
-// });
 
 module.exports = router;

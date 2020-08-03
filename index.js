@@ -15,6 +15,8 @@ const app = express();
 app.use('/login', require('./routes/login.js'));
 app.use('/register', require('./routes/register.js'));
 app.use('/get-questions', require('./routes/getquestions.js'));
+app.use('/get-subquestions', require('./routes/getsubquestions.js'));
+app.use('/get-answers', require('./routes/getanswers.js'));
 
 /*
  * Return HTML for the / end point.
