@@ -18,18 +18,19 @@ router.get("/", (req, res) => {
         'AND a.TopicID = c.TopicID ' +
         'AND a.DifficultyID = d.DifficultyID ' +
         'AND a.TypeID = e.TypeID';
-    if (req.query['course'])
+    if (!(req.query['course'] == null))
         dbquery += ' AND a.CourseID ' +
             'IN (SELECT CourseID FROM Courses WHERE CourseName = \'' +
             req.query['course'] + '\')';
-    if (req.query['topic'])
+    if (!(req.query['topic'] == null))
         dbquery += ' AND a.TopicID ' +
             'IN (SELECT TopicID FROM Topics WHERE TopicDescription = \'' +
             req.query['topic'] + '\')';
-    if (req.query['difficulty'])
+    if (!(req.query['difficulty'] == null))
         dbquery += ' AND a.DifficultyID ' +
             'IN (SELECT DifficultyID FROM Difficulties WHERE DifficultyDescription = \'' +
             req.query['difficulty'] + '\')';
+    console.log(dbquery);
     db.manyOrNone(dbquery)
         //If successful, run function passed into .then()
         .then((data) => {
