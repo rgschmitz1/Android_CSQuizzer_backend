@@ -5,3 +5,4 @@ package-lock.json
 .env
 .idea
 latest.dump
+.env 
