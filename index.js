@@ -20,7 +20,9 @@ app.use('/updatepassword', require('./routes/updatepassword.js'));
 app.use('/get-questions', require('./routes/getquestions.js'));
 app.use('/get-subquestions', require('./routes/getsubquestions.js'));
 app.use('/get-answers', require('./routes/getanswers.js'));
-
+app.use('/get-courses', require('./routes/getcourses.js'));
+app.use('/get-topics', require('./routes/gettopics.js'));
+app.use('/get-difficulties', require('./routes/getdifficulties.js'));
 /*
  * Return HTML for the / end point.
  * This is a nice location to document your web service API
