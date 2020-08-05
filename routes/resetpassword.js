@@ -15,6 +15,9 @@ let sendEmail = require('../utilities/utils').sendEmail;
 
 let router = express.Router();
 
+// Define activity mode and pass back to caller
+let mode = 'reset';
+
 const bodyParser = require("body-parser");
 //This allows parsing of the body of POST requests, that are encoded in JSON
 router.use(bodyParser.json());
@@ -26,11 +29,10 @@ router.post('/', (req, res) => {
     //Verify that the caller supplied all the parameters
     //In js, empty strings or null values evaluate to false
     if(email) {
-        db.manyOrNone("SELECT COUNT(*) FROM Members WHERE Email = '" + email + "'")
+        db.one("SELECT COUNT(*) FROM Members WHERE Email = '" + email + "'")
             //If successful, run function passed into .then()
-            .then((data) => {
-                let rows = data[0]['count'];
-                if(rows == 0) {
+            .then(row => {
+                if(row['count'] == 0) {
                     res.send({
                         success: false,
                         error: "Email does not exist"
@@ -44,7 +46,8 @@ router.post('/', (req, res) => {
                         .then(() => {
                             //We successfully added the user, let the user know
                             res.send({
-                                success: true
+                                success: true,
+                                mode: mode
                             });
                             sendEmail(email, "Welcome!", "Your new password: " + newPassword);
                         }).catch((err) => {

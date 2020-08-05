@@ -13,6 +13,9 @@ let sendEmail = require('../utilities/utils').sendEmail;
 
 let router = express.Router();
 
+// Define activity mode and pass back to caller
+let mode = 'register';
+
 const bodyParser = require('body-parser');
 // This allows parsing of the body of the POST requests, that are encoded in JSON
 router.use(bodyParser.json());
@@ -42,10 +45,11 @@ router.post('/', (req, res) => {
             .then(() => {
                 // We successfully added the user
                 res.send({
-                    success: true
+                    success: true,
+                    mode: mode
                 });
                 sendEmail(email, 'Welcome!',
-                    "<strong>Welcome to our app!</strong>");
+                    "<strong>Welcome to CS Quizzer!</strong>");
             }).catch((err) => {
             //log the error
             //console.log(err);

@@ -8,6 +8,9 @@ let getHash = require('../utilities/utils').getHash;
 
 let router = express.Router();
 
+// Define activity mode and pass back to caller
+let mode = 'login';
+
 const bodyParser = require("body-parser");
 //This allows parsing of the body of POST requests, that are encoded in JSON
 router.use(bodyParser.json());
@@ -44,6 +47,7 @@ router.post('/', (req, res) => {
                     //package and send the results
                     res.json({
                         success: true,
+                        mode: mode,
                         message: 'Authentication successful!',
                         token: token
                     });
