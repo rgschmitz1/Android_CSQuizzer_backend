@@ -48,7 +48,7 @@ router.post('/', (req, res) => {
                     success: true,
                     mode: mode
                 });
-                sendEmail(email, 'Welcome!',
+                sendEmail(email, 'Thanks for registering!',
                     "<strong>Welcome to CS Quizzer!</strong>");
             }).catch((err) => {
             //log the error
@@ -57,7 +57,7 @@ router.post('/', (req, res) => {
             // Therefore, let the requester known they tried to create an account that already exists
             res.send({
                 success: false,
-                error: err
+                error: 'User is likely already registered'
             });
         });
     } else {

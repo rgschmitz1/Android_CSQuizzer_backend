@@ -35,21 +35,21 @@ router.post('/', (req, res) => {
                 if(row['count'] == 0) {
                     res.send({
                         success: false,
-                        error: "Email does not exist"
+                        error: 'Email does not exist'
                     });
                 } else {
                     let salt = crypto.randomBytes(32).toString("hex");
                     let newPassword = generateRandomPassword(10);
                     let salted_hash = getHash(newPassword, salt);
                     let params = [salted_hash, salt, email];
-                    db.none("UPDATE Members SET Password = $1, Salt = $2 WHERE Email = $3", params)
+                    db.none('UPDATE Members SET Password = $1, Salt = $2 WHERE Email = $3', params)
                         .then(() => {
                             //We successfully added the user, let the user know
                             res.send({
                                 success: true,
                                 mode: mode
                             });
-                            sendEmail(email, "Welcome!", "Your new password: " + newPassword);
+                            sendEmail(email, 'User Information Update', 'Your new password is: ' + newPassword);
                         }).catch((err) => {
                             //log the error
                             //console.log(err);
@@ -71,7 +71,7 @@ router.post('/', (req, res) => {
     } else {
         res.send({
             success: false,
-            error: "Missing required user information"
+            error: 'Missing required user information'
         });
     }
 });

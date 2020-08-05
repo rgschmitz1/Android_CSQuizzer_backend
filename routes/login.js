@@ -11,7 +11,7 @@ let router = express.Router();
 // Define activity mode and pass back to caller
 let mode = 'login';
 
-const bodyParser = require("body-parser");
+const bodyParser = require('body-parser');
 //This allows parsing of the body of POST requests, that are encoded in JSON
 router.use(bodyParser.json());
 
@@ -55,7 +55,7 @@ router.post('/', (req, res) => {
                     //credentials did not match
                     res.send({
                         success: false,
-                        error: "username and/or password was not found"
+                        error: 'username and/or password was not found'
                     });
                 }
             })
@@ -64,7 +64,7 @@ router.post('/', (req, res) => {
                 //If anything happened, it wasn't successful
                 res.send({
                     success: false,
-                    error: "username and/or password was not found",
+                    error: 'username and/or password was not found',
                     message: err
                 });
             });
