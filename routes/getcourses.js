@@ -15,6 +15,7 @@ router.get("/", (req, res) => {
         .then((data) => {
             res.send({
                 success: true,
+                mode: "course",
                 names: data
             });
         }).catch((error) => {

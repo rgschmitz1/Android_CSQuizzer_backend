@@ -15,6 +15,7 @@ router.get("/", (req, res) => {
         .then((data) => {
             res.send({
                 success: true,
+                mode: "difficulty",
                 names: data
             });
         }).catch((error) => {
