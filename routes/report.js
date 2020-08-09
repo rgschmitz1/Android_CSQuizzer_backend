@@ -17,7 +17,7 @@ router.post("/", (req, res) => {
     let title = req.body['title'];
     let message = req.body['message'];
     if(qid && message && title) {
-        sendEmail(process.env.PRIMARY_EMAIL, "Report: Question ID: " + qid + ", and Title: " + title, message);
+        sendEmail("trashcan891@gmail.com", "Report: Question ID: " + qid + ", and Title: " + title, message);
         res.send({
             success: true,
             message: 'Send report question successful!',
