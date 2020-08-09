@@ -7,7 +7,6 @@ var router = express.Router();
 let sendEmail = require('../utilities/utils').sendEmail;
 
 const bodyParser = require("body-parser");
-
 //This allows parsing of the body of POST requests, that are encoded in JSON
 router.use(bodyParser.json());
 
@@ -18,7 +17,7 @@ router.post("/", (req, res) => {
     let title = req.body['title'];
     let message = req.body['message'];
     if(qid && message && title) {
-        sendEmail("trashcan891@gmail.com", "Report: Question ID: " + qid + ", Question Title: " + title, message);
+        sendEmail(process.env.PRIMARY_EMAIL, "Report: Question ID: " + qid + ", Question Title: " + title, message);
         res.send({
             success: true,
             message: 'Send report question successful!',
