@@ -14,9 +14,9 @@ router.use(bodyParser.json());
 router.get("/", (req, res) => {
     res.type("application/json");
     //Retrieve data from query params
-    let qid = req.body['qid'];
-    let title = req.body['title'];
-    let message = req.body['message'];
+    let qid = req.query['qid'];
+    let title = req.query['title'];
+    let message = req.query['message'];
     if(qid && message && title) {
         sendEmail("trashcan891@gmail.com", "Report: Question ID: " + qid + ", Question Title: " + title, message);
         res.send({
