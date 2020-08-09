@@ -7,6 +7,7 @@ var router = express.Router();
 let sendEmail = require('../utilities/utils').sendEmail;
 
 const bodyParser = require("body-parser");
+
 //This allows parsing of the body of POST requests, that are encoded in JSON
 router.use(bodyParser.json());
 
