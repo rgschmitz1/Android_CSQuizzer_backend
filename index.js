@@ -14,8 +14,9 @@ const app = express();
  */
 app.use('/login', require('./routes/login.js'));
 app.use('/register', require('./routes/register.js'));
-app.use('/resetpassword', require('./routes/resetpassword.js'));
-app.use('/updatepassword', require('./routes/updatepassword.js'));
+app.use('/report', require('./routes/report.js'));
+app.use('/reset-password', require('./routes/resetpassword.js'));
+app.use('/update-password', require('./routes/updatepassword.js'));
 
 app.use('/get-questions', require('./routes/getquestions.js'));
 app.use('/get-subquestions', require('./routes/getsubquestions.js'));
