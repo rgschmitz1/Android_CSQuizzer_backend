@@ -6,8 +6,8 @@ const crypto = require('crypto');
 
 // We are using sendgrid for email
 const sgMail = require('@sendgrid/mail');
-// We need to set the sender to a constant to use sendgrid
-const sender = 'phucbob.csquizzer@gmail.com';
+// We need a verified sender to use sendgrid
+const sender = process.env.PRIMARY_EMAIL;
 
 function sendEmail(receiver, subj, message) {
     sgMail.setApiKey(process.env.SENDGRID_API_KEY);
@@ -42,7 +42,8 @@ function getHash(pw, salt) {
 function generateRandomPassword(length) {
     let result = '';
     let characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    for ( var i = 0; i < length; i++ ) {
+    let i;
+    for (i = 0; i < length; i++) {
         result += characters.charAt(Math.floor(Math.random() * characters.length));
     }
     return result;

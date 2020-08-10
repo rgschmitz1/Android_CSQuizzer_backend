@@ -18,12 +18,31 @@ app.use('/report', require('./routes/report.js'));
 app.use('/reset-password', require('./routes/resetpassword.js'));
 app.use('/update-password', require('./routes/updatepassword.js'));
 
+app.use('/add-questions', require('./routes/addquestions.js'));
+app.use('/add-subquestions', require('./routes/addsubquestions.js'));
+app.use('/add-answers', require('./routes/addanswers.js'));
+app.use('/add-courses', require('./routes/addcourses.js'));
+app.use('/add-topics', require('./routes/addtopics.js'));
+
+app.use('/delete-questions', require('./routes/deletequestions.js'));
+app.use('/delete-subquestions', require('./routes/deletesubquestions.js'));
+app.use('/delete-answers', require('./routes/deleteanswers.js'));
+app.use('/delete-courses', require('./routes/deletecourses.js'));
+app.use('/delete-topics', require('./routes/deletetopics.js'));
+
+app.use('/update-questions', require('./routes/updatequestions.js'));
+app.use('/update-subquestions', require('./routes/updatesubquestions.js'));
+app.use('/update-answers', require('./routes/updateanswers.js'));
+app.use('/update-courses', require('./routes/updatecourses.js'));
+app.use('/update-topics', require('./routes/updatetopics.js'));
+
 app.use('/get-questions', require('./routes/getquestions.js'));
 app.use('/get-subquestions', require('./routes/getsubquestions.js'));
 app.use('/get-answers', require('./routes/getanswers.js'));
 app.use('/get-courses', require('./routes/getcourses.js'));
 app.use('/get-topics', require('./routes/gettopics.js'));
 app.use('/get-difficulties', require('./routes/getdifficulties.js'));
+app.use('/get-types', require('./routes/gettypes.js'));
 /*
  * Return HTML for the / end point.
  * This is a nice location to document your web service API

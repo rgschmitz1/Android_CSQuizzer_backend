@@ -4,18 +4,18 @@ const db = require('../utilities/sqlconn.js');
 
 let router = express.Router();
 
-const bodyParser = require("body-parser");
+const bodyParser = require('body-parser');
 
 //This allows parsing of the body of POST requests, that are encoded in JSON
 router.use(bodyParser.json());
 
-router.get("/", (req, res) => {
-    db.manyOrNone('SELECT * FROM Courses')
+router.get('/', (req, res) => {
+    db.manyOrNone('SELECT * FROM Types')
         //If successful, run function passed into .then()
         .then((data) => {
             res.send({
                 success: true,
-                mode: "course",
+                mode: "type",
                 names: data
             });
         }).catch((error) => {
