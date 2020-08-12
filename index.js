@@ -37,6 +37,7 @@ app.use('/update-courses', require('./routes/updatecourses.js'));
 app.use('/update-topics', require('./routes/updatetopics.js'));
 
 app.use('/get-questions', require('./routes/getquestions.js'));
+app.use('/list-questions', require('./routes/listquestions.js'));
 app.use('/get-subquestions', require('./routes/getsubquestions.js'));
 app.use('/get-answers', require('./routes/getanswers.js'));
 app.use('/get-courses', require('./routes/getcourses.js'));
