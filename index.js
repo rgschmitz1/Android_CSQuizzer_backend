@@ -31,6 +31,7 @@ app.use('/delete-courses', require('./routes/deletecourses.js'));
 app.use('/delete-topics', require('./routes/deletetopics.js'));
 
 app.use('/update-questions', require('./routes/updatequestions.js'));
+app.use('/update-question-type', require('./routes/updatequestiontype.js'));
 app.use('/update-subquestions', require('./routes/updatesubquestions.js'));
 app.use('/update-answers', require('./routes/updateanswers.js'));
 app.use('/update-courses', require('./routes/updatecourses.js'));

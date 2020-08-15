@@ -14,17 +14,11 @@ router.post('/', (req, res) => {
     res.type('application/json');
     //Retrieve data from body params
     let questionID = req.body['question'];
-    let courseID = req.body['course'];
-    let topicID = req.body['topic'];
-    let difficultyID = req.body['difficulty'];
-    // let typeID = req.body['type'];
-    let questionBody = req.body['body'];
-    let questionTitle = req.body['title'];
-    if (questionID && courseID && topicID && difficultyID && questionBody && questionTitle) {
-        let params = [courseID, topicID, difficultyID, questionBody, questionTitle, questionID];
+    let typeID = req.body['type'];
+    if (questionID && typeID) {
+        let params = [typeID, questionID];
         db.none("UPDATE Questions " +
-            "SET CourseID=$1, TopicID=$2, DifficultyID=$3, QuestionBody=$4, QuestionTitle=$5 " +
-            "WHERE QuestionID = $6", params)
+            "SET typeID=$1 WHERE QuestionID=$2", params)
             .then(() => {
                 //We successfully added the user, let the user know
                 res.send({
