@@ -7,5 +7,6 @@ CREATE TABLE Members (
     Email VARCHAR(255) NOT NULL UNIQUE,
     Password VARCHAR(255) NOT NULL,
     SALT VARCHAR(255),
-    Verification INT DEFAULT 0
+    Verification INT DEFAULT 0,
+    Admin BOOLEAN DEFAULT FALSE
 );
