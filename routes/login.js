@@ -26,7 +26,7 @@ router.post('/', (req, res) => {
     let theirPw = req.body['password'];
     if(username && theirPw) {
         //Using the 'one' method means that only one row should be returned
-        db.one('SELECT Password, Salt FROM Members WHERE Username=$1', [username])
+        db.one('SELECT Password, Salt, Admin FROM Members WHERE Username=$1', [username])
             .then(row => { //If successful, run function passed into .then()
                 let salt = row['salt'];
                 //Retrieve our copy of the password
@@ -45,12 +45,23 @@ router.post('/', (req, res) => {
                         }
                     );
                     //package and send the results
-                    res.json({
-                        success: true,
-                        mode: mode,
-                        message: 'Authentication successful!',
-                        token: token
-                    });
+                    if (row['admin']) {
+                        res.json({
+                            success: true,
+                            mode: mode,
+                            admin: true,
+                            message: 'Authentication successful!',
+                            token: token
+                        });
+                    } else {
+                        res.json({
+                            success: true,
+                            mode: mode,
+                            admin: false,
+                            message: 'Authentication successful!',
+                            token: token
+                        });
+                    }
                 } else {
                     //credentials did not match
                     res.send({
