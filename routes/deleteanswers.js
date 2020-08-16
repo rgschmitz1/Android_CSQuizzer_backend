@@ -12,11 +12,9 @@ router.use(bodyParser.json());
 
 router.post('/', (req, res) => {
     res.type('application/json');
-    let answerID = req.body['aid'];
     let questionID = req.body['qid'];
-    if(answerID && questionID) {
-        let params = [answerID, questionID];
-        db.none("DELETE FROM Answers WHERE AnswerID = $1 AND QuestionID = $2", params)
+    if(questionID) {
+        db.none("DELETE FROM Answers WHERE QuestionID = $1", questionID)
             .then(() => {
                 //We successfully added the user, let the user know
                 res.send({
