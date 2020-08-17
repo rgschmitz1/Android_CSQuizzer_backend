@@ -15,6 +15,7 @@ router.get("/", (req, res) => {
     if (!(req.query['title'] == null))
         dbquery += 'WHERE QuestionTitle = \'' +
             req.query['title'] + '\'';
+    dbquery += ' ORDER BY QuestionID'
     db.manyOrNone(dbquery)
         //If successful, run function passed into .then()
         .then((data) => {
