@@ -38,6 +38,8 @@ app.use('/update-courses', require('./routes/updatecourses.js'));
 app.use('/update-topics', require('./routes/updatetopics.js'));
 
 app.use('/get-questions', require('./routes/getquestions.js'));
+app.use('/get-questions-by-topic-id', require('./routes/getquestionsbytopicid.js'));
+app.use('/get-questions-by-course-id', require('./routes/getquestionsbycourseid.js'));
 app.use('/list-questions', require('./routes/listquestions.js'));
 app.use('/get-subquestions', require('./routes/getsubquestions.js'));
 app.use('/get-answers', require('./routes/getanswers.js'));
