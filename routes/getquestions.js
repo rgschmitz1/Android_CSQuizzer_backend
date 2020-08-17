@@ -31,7 +31,7 @@ router.get("/", (req, res) => {
             'IN (SELECT DifficultyID FROM Difficulties WHERE DifficultyDescription = \'' +
             req.query['difficulty'] + '\')';
     if (!(req.query['limit'] == null))
-        dbquery += ' LIMIT ' + req.query['limit'];
+        dbquery += ' LIMIT ' + req.query['limit'] + ' ORDER BY QuestionID';
     //console.log(dbquery);
     db.manyOrNone(dbquery)
         //If successful, run function passed into .then()
