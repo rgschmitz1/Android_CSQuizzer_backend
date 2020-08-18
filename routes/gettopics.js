@@ -10,7 +10,7 @@ const bodyParser = require("body-parser");
 router.use(bodyParser.json());
 
 router.get("/", (req, res) => {
-    db.manyOrNone('SELECT * FROM Topics')
+    db.manyOrNone('SELECT topicid, topicdescription FROM Topics ORDER BY topicid')
         //If successful, run function passed into .then()
         .then((data) => {
             res.send({

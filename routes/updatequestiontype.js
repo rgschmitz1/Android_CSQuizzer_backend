@@ -12,9 +12,13 @@ router.use(bodyParser.json());
 
 router.post('/', (req, res) => {
     res.type('application/json');
-    let questionID = req.body['qid'];
-    if(questionID) {
-        db.none("DELETE FROM Answers WHERE QuestionID = $1", questionID)
+    //Retrieve data from body params
+    let questionID = req.body['question'];
+    let typeID = req.body['type'];
+    if (questionID && typeID) {
+        let params = [typeID, questionID];
+        db.none("UPDATE Questions " +
+            "SET typeID=$1 WHERE QuestionID=$2", params)
             .then(() => {
                 //We successfully added the user, let the user know
                 res.send({

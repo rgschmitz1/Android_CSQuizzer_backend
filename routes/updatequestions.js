@@ -17,14 +17,14 @@ router.post('/', (req, res) => {
     let courseID = req.body['course'];
     let topicID = req.body['topic'];
     let difficultyID = req.body['difficulty'];
-    let typeID = req.body['type'];
+    // let typeID = req.body['type'];
     let questionBody = req.body['body'];
     let questionTitle = req.body['title'];
-    if (questionID && courseID && topicID && difficultyID && typeID && questionBody && questionTitle) {
-        let params = [courseID, topicID, difficultyID, typeID, questionBody, questionTitle, questionID];
+    if (questionID && courseID && topicID && difficultyID && questionBody && questionTitle) {
+        let params = [courseID, topicID, difficultyID, questionBody, questionTitle, questionID];
         db.none("UPDATE Questions " +
-            "SET CourseID=$1, TopicID=$2, DifficultyID=$3, TypeID=$4, QuestionBody=$5, QuestionTitle=$6 " +
-            "WHERE QuestionID = $7", params)
+            "SET CourseID=$1, TopicID=$2, DifficultyID=$3, QuestionBody=$4, QuestionTitle=$5 " +
+            "WHERE QuestionID = $6", params)
             .then(() => {
                 //We successfully added the user, let the user know
                 res.send({

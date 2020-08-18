@@ -1,6 +1,7 @@
 const express = require('express');
 
-const db = require('../utilities/sqlconn.js');
+//Create connection to Heroku Database
+let db = require('../utilities/utils').db;
 
 let router = express.Router();
 
@@ -10,12 +11,13 @@ const bodyParser = require("body-parser");
 router.use(bodyParser.json());
 
 router.get("/", (req, res) => {
-    db.manyOrNone('SELECT courseid, coursename FROM Courses ORDER BY courseid')
+    let dbquery = 'SELECT * FROM Questions WHERE Courseid = ' + '\'' + req.query['courseid'] + '\'';
+    db.manyOrNone(dbquery)
         //If successful, run function passed into .then()
         .then((data) => {
             res.send({
                 success: true,
-                mode: "course",
+                mode: "question",
                 names: data
             });
         }).catch((error) => {

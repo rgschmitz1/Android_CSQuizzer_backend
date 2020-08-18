@@ -12,11 +12,9 @@ router.use(bodyParser.json());
 
 router.post('/', (req, res) => {
     res.type('application/json');
-    let subquestionID = req.body['sid'];
     let questionID = req.body['qid'];
-    if(subquestionID && questionID) {
-        let params = [subquestionID, questionID];
-        db.none("DELETE FROM SubQuestions WHERE SubQuestionID = $1 AND QuestionID = $2", params)
+    if(questionID) {
+        db.none("DELETE FROM SubQuestions WHERE QuestionID = $1", questionID)
             .then(() => {
                 //We successfully added the user, let the user know
                 res.send({

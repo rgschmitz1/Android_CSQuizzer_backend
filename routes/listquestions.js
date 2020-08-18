@@ -11,7 +11,12 @@ const bodyParser = require("body-parser");
 router.use(bodyParser.json());
 
 router.get("/", (req, res) => {
-    db.manyOrNone('SELECT * FROM Questions')
+    let dbquery = 'SELECT * FROM Questions '
+    if (!(req.query['title'] == null))
+        dbquery += 'WHERE QuestionTitle = \'' +
+            req.query['title'] + '\'';
+    dbquery += ' ORDER BY QuestionID'
+    db.manyOrNone(dbquery)
         //If successful, run function passed into .then()
         .then((data) => {
             res.send({
